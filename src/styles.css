@@ -51,8 +51,8 @@
     --popover: 222.2 84% 4.9%;         /* Fondo de popovers casi negro */
     --popover-foreground: 210 40% 98%; /* Texto de popovers casi blanco */
     
-    --primary: 217.2 91.2% 59.8%;      /* Azul principal más brillante */
-    --primary-foreground: 222.2 47.4% 11.2%; /* Texto sobre azul (casi negro) */
+    --primary: 217.2 91.2% 65.8%;  /* Más brillante */
+    --primary-foreground: 210 40% 98%;
     
     --secondary: 217.2 32.6% 17.5%;    /* Gris oscuro */
     --secondary-foreground: 210 40% 98%; /* Texto sobre gris oscuro (casi blanco) */
@@ -380,4 +380,37 @@ button a {
 
 .dark button a {
     color: hsl(var(--primary-foreground));
+}
+
+/* Añadir estas reglas al final de tu archivo styles.css */
+
+/* Asegurar que los iconos en el navbar sean visibles en modo oscuro */
+.dark .text-foreground svg {
+    color: hsl(var(--foreground));
+}
+
+/* Asegurar que los enlaces en botones tengan el color correcto */
+button a {
+    color: inherit;
+}
+
+.bg-gradient-to-r.from-primary.to-violet-500 a {
+    color: white;
+}
+
+/* Mejorar el responsive */
+@media (max-width: 768px) {
+    .grid.md\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .grid.lg\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid.lg\:grid-cols-4 {
+        grid-template-columns: 1fr !important;
+    }
 }

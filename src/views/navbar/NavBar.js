@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 // src/views/navbar/NavBar.js
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+// src/views/navbar/NavBar.js
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../ui/Button'
@@ -43,10 +46,7 @@ const NavBar = () => {
             <div className="container mx-auto px-4 flex h-16 items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="relative">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-violet-500 rounded-full blur opacity-70 transition-opacity" />
-                        <div className="relative bg-background rounded-full p-1">
-                            <MessageSquare className="h-6 w-6 text-primary" />
-                        </div>
+                        <MessageSquare className="h-6 w-6 text-primary" />
                     </div>
                     <span className="text-lg font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl text-transparent">
                         AutoReply-Lite
@@ -54,23 +54,23 @@ const NavBar = () => {
                 </div>
 
                 <nav className="hidden md:flex items-center gap-6">
-                    <Link to="/" className="text-sm hover:text-primary transition-colors">
+                    <Link to="/" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
                         Inicio
                     </Link>
-                    <Link to="/features" className="text-sm hover:text-primary transition-colors">
+                    <Link to="/features" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
                         Características
                     </Link>
-                    <Link to="/pricing" className="text-sm hover:text-primary transition-colors">
+                    <Link to="/pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
                         Planes
                     </Link>
-                    <Link to="/contact" className="text-sm hover:text-primary transition-colors">
+                    <Link to="/contact" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
                         Contacto
                     </Link>
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleDarkMode}
-                        className="hover:bg-accent/20"
+                        className="hover:bg-accent/20 text-foreground"
                         aria-label={isDarkMode ? 'Modo claro' : 'Modo oscuro'}
                     >
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -82,20 +82,20 @@ const NavBar = () => {
                         size="sm"
                         className="hidden md:inline-flex bg-gradient-to-r from-primary to-violet-500 hover:opacity-90"
                     >
-                        <Link to="/login">Comenzar ahora</Link>
+                        <Link to="/login" className="text-white">Comenzar ahora</Link>
                     </Button>
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleDarkMode}
-                        className="md:hidden mr-2 hover:bg-accent/20"
+                        className="md:hidden mr-2 hover:bg-accent/20 text-foreground"
                     >
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                     </Button>
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="md:hidden hover:bg-accent/20"
+                        className="md:hidden hover:bg-accent/20 text-foreground"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                         {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -112,23 +112,23 @@ const NavBar = () => {
                     className="md:hidden border-t"
                 >
                     <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-                        <Link to="/" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/" className="text-sm text-foreground hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Inicio
                         </Link>
-                        <Link to="/features" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/features" className="text-sm text-foreground hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Características
                         </Link>
-                        <Link to="/pricing" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/pricing" className="text-sm text-foreground hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Planes
                         </Link>
-                        <Link to="/contact" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/contact" className="text-sm text-foreground hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Contacto
                         </Link>
                         <Button
                             size="sm"
                             className="w-full bg-gradient-to-r from-primary to-violet-500 hover:opacity-90"
                         >
-                            <Link to="/login" className="w-full">Comenzar ahora</Link>
+                            <Link to="/login" className="w-full text-white">Comenzar ahora</Link>
                         </Button>
                     </div>
                 </motion.div>

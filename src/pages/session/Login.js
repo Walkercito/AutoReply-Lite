@@ -27,34 +27,30 @@ const LogIn = () => {
             <div className="w-full max-w-md">
                 <div className="mb-8 text-center">
                     <Link to="/" className="inline-flex items-center gap-2">
-                        <div className="relative">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-violet-500 rounded-full blur opacity-70"></div>
-                            <div className="relative bg-background dark:bg-background/20 rounded-full p-1">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="h-6 w-6 text-primary"
-                                >
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                                    <path d="M13 8H7" />
-                                    <path d="M13 12H7" />
-                                </svg>
-                            </div>
-                        </div>
+                        {/* Icono simplificado */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="h-6 w-6 text-primary dark:text-primary-400"
+                        >
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            <path d="M13 8H7" />
+                            <path d="M13 12H7" />
+                        </svg>
                         <span className="text-xl font-bold bg-gradient-to-r from-primary to-violet-500 bg-clip-text text-transparent">
-              AutoReply-Lite
+                            AutoReply-Lite
                         </span>
                     </Link>
                     <h1 className="mt-6 text-2xl font-bold">Iniciar sesión</h1>
                     <p className="mt-2 text-sm text-muted-foreground">
-            Ingresa tus credenciales para acceder a tu cuenta
+                        Ingresa tus credenciales para acceder a tu cuenta
                     </p>
                 </div>
 
@@ -62,7 +58,7 @@ const LogIn = () => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-sm font-medium">
-                Email
+                                Email
                             </label>
                             <input
                                 id="email"
@@ -77,10 +73,10 @@ const LogIn = () => {
                         <div className="space-y-2">
                             <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="text-sm font-medium">
-                  Contraseña
+                                    Contraseña
                                 </label>
                                 <a href="#" className="text-xs text-primary hover:underline">
-                  ¿Olvidaste tu contraseña?
+                                    ¿Olvidaste tu contraseña?
                                 </a>
                             </div>
                             <input
@@ -97,14 +93,14 @@ const LogIn = () => {
                             type="submit"
                             className="w-full bg-gradient-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity"
                         >
-              Iniciar sesión
+                            Iniciar sesión
                         </Button>
                     </form>
 
                     <div className="mt-6 text-center text-sm">
-            ¿No tienes una cuenta?{' '}
+                        ¿No tienes una cuenta?{' '}
                         <a href="#" className="text-primary hover:underline">
-              Regístrate
+                            Regístrate
                         </a>
                     </div>
                 </div>

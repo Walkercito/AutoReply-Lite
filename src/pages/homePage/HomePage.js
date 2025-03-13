@@ -2,8 +2,11 @@
 // src/pages/homePage/HomePage.js
 /* eslint-disable no-unused-vars */
 // src/pages/homePage/HomePage.js
+/* eslint-disable no-unused-vars */
+// src/pages/homePage/HomePage.js
+/* eslint-disable no-unused-vars */
+// src/pages/homePage/HomePage.js
 import '../../styles.css'
-
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -11,7 +14,7 @@ import { TypeAnimation } from 'react-type-animation'
 import NavBar from '../../views/navbar/NavBar'
 import Button from '../../ui/Button'
 
-// Importamos los iconos como componentes SVG
+// Iconos SVG
 const MessageSquareText = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -73,12 +76,7 @@ const Sparkles = (props) => (
 const HomePage = () => {
     const container = {
         hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
+        show: { opacity: 1, transition: { staggerChildren: 0.1 } }
     }
 
     const item = {
@@ -86,26 +84,21 @@ const HomePage = () => {
         show: { opacity: 1, y: 0 }
     }
 
-    const fadeIn = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-    }
-
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-b from-background to-background/80">
-            {/* Decorative background elements */}
+        <div className="flex flex-col min-h-screen bg-gradient-to-b from-background to-background/80 dark:from-[#0a0a23] dark:to-[#0a0a23]/90">
+            {/* Fondo decorativo */}
             <div className="fixed inset-0 -z-10 overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-[0.02] dark:opacity-[0.03]"></div>
+                <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-[0.02] dark:opacity-[0.03]" />
                 <div className="absolute top-0 left-0 w-full h-full">
-                    <div className="absolute top-[10%] right-[10%] w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-[10rem]"></div>
-                    <div className="absolute bottom-[10%] left-[10%] w-[30rem] h-[30rem] bg-secondary/20 rounded-full blur-[10rem]"></div>
+                    <div className="absolute top-[10%] right-[10%] w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-[10rem]" />
+                    <div className="absolute bottom-[10%] left-[10%] w-[30rem] h-[30rem] bg-secondary/20 rounded-full blur-[10rem]" />
                 </div>
             </div>
 
             <NavBar />
 
             <main className="flex-1">
-                {/* Hero Section */}
+                {/* Sección Hero */}
                 <section id="inicio" className="w-full py-12 md:py-24 lg:py-32 xl:py-40 overflow-hidden">
                     <div className="container mx-auto px-4 md:px-6 relative">
                         <motion.div
@@ -114,21 +107,22 @@ const HomePage = () => {
                             variants={container}
                             className="grid gap-6 md:gap-10"
                         >
-                            {/* Contenido del hero - Modificado para mejor responsive */}
                             <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 lg:gap-12">
+                                {/* Columna izquierda */}
                                 <motion.div variants={item} className="flex flex-col justify-center space-y-4">
                                     <div className="space-y-2">
                                         <motion.div
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.5 }}
-                                            className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-primary/10 text-primary mb-2"
+                                            className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-primary/10 text-primary dark:bg-primary/10 dark:text-primary-200 dark:border-primary/30"
                                         >
-                                            <Sparkles className="mr-1 h-3 w-3" /> Nuevo lanzamiento
+                                            <Sparkles className="mr-1 h-3 w-3 text-current" /> Nuevo lanzamiento
                                         </motion.div>
+
                                         <motion.h1
                                             variants={item}
-                                            className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent"
+                                            className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-gradient-to-r from-foreground dark:from-primary via-foreground dark:via-primary/90 to-foreground/70 dark:to-primary/70 bg-clip-text text-transparent"
                                         >
                                             Automatiza tus respuestas en Email y{' '}
                                             <span className="inline-block">
@@ -140,7 +134,7 @@ const HomePage = () => {
                                                     className="typing-text"
                                                     style={{
                                                         display: 'inline-block',
-                                                        backgroundImage: 'linear-gradient(to right, #25D366, #128C7E)', // WhatsApp colors
+                                                        backgroundImage: 'linear-gradient(to right, #25D366, #128C7E)',
                                                         backgroundClip: 'text',
                                                         WebkitBackgroundClip: 'text',
                                                         color: 'transparent'
@@ -150,11 +144,16 @@ const HomePage = () => {
                                             </span>{' '}
                                             de forma sencilla.
                                         </motion.h1>
-                                        <motion.p variants={item} className="max-w-[600px] text-muted-foreground md:text-xl">
+
+                                        <motion.p
+                                            variants={item}
+                                            className="max-w-[600px] text-muted-foreground dark:text-gray-300 md:text-xl"
+                                        >
                                             AutoReply-Lite permite a pequeños negocios responder automáticamente a clientes con reglas simples,
                                             sin necesidad de conocimientos técnicos.
                                         </motion.p>
                                     </div>
+
                                     <motion.div variants={item} className="flex flex-col sm:flex-row gap-2">
                                         <Button
                                             size="lg"
@@ -184,32 +183,34 @@ const HomePage = () => {
                                                 </div>
                                             ))}
                                         </div>
-                                        <div className="text-sm text-muted-foreground">
-                                            <span className="font-medium text-foreground">+120</span> negocios confían en nosotros
+                                        <div className="text-sm text-muted-foreground dark:text-gray-400">
+                                            <span className="font-medium text-foreground dark:text-primary">+120</span> negocios confían en nosotros
                                         </div>
                                     </motion.div>
                                 </motion.div>
 
+                                {/* Columna derecha - Imagen */}
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.5, delay: 0.2 }}
-                                    className="relative flex items-center justify-center mt-8 lg:mt-0"
+                                    className="relative flex items-center justify-center mt-8 lg:mt-0 px-4 sm:px-0"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-violet-500/20 rounded-3xl blur-xl"></div>
-                                    <div className="relative bg-gradient-to-r from-background/80 to-background/90 backdrop-blur-sm border rounded-3xl p-1 shadow-xl">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-violet-500/20 rounded-3xl blur-xl" />
+                                    <div className="relative bg-gradient-to-r from-background/80 to-background/90 dark:from-gray-900/80 dark:to-gray-900 backdrop-blur-sm border rounded-3xl p-1 shadow-xl w-full max-w-[90vw] md:max-w-none">
                                         <img
                                             src="/placeholder.svg?height=500&width=500&text=AutoReply-Lite+Dashboard"
                                             width={500}
                                             height={500}
                                             alt="AutoReply-Lite Dashboard"
-                                            className="rounded-2xl object-cover w-full"
+                                            className="rounded-2xl object-cover w-full h-auto max-w-[350px] md:max-w-[500px] mx-auto"
                                         />
-
-                                        <div className="absolute -bottom-4 -right-4 bg-background dark:bg-gray-800 rounded-xl shadow-lg p-4 border">
+                                        <div className="absolute -bottom-4 -right-4 md:-right-4 bg-background dark:bg-gray-800 rounded-xl shadow-lg p-3 md:p-4 border dark:border-gray-700 transform scale-75 md:scale-100">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                                <span className="text-sm font-medium">Respondiendo automáticamente</span>
+                                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                                                <span className="text-xs md:text-sm font-medium whitespace-nowrap dark:text-gray-200">
+                                                    Respondiendo automáticamente
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -217,70 +218,49 @@ const HomePage = () => {
                             </div>
                         </motion.div>
 
-                        {/* Floating elements */}
-                        <div className="absolute top-1/4 left-0 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
-                        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-violet-500/5 rounded-full blur-xl"></div>
+                        {/* Elementos decorativos */}
+                        <div className="absolute top-1/4 left-0 w-24 h-24 bg-primary/5 rounded-full blur-xl" />
+                        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-violet-500/5 rounded-full blur-xl" />
                     </div>
                 </section>
-
-                {/* Resto de secciones... */}
-                {/* Puedes agregar aquí las secciones de características, planes, testimonios, etc. */}
             </main>
 
             {/* Footer */}
-            <footer id="contacto" className="w-full border-t bg-background dark:bg-transparent py-12 md:py-16">
+            <footer id="contacto" className="w-full border-t dark:border-gray-800 bg-background dark:bg-gray-900 py-12 md:py-16">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                         <div className="space-y-4">
                             <div className="flex items-center gap-2">
-                                <div className="relative">
-                                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-violet-500 rounded-full blur opacity-70"></div>
-                                    <div className="relative bg-background dark:bg-gray-800 rounded-full p-1">
-                                        <MessageSquareText className="h-6 w-6 text-primary" />
-                                    </div>
-                                </div>
+                                <MessageSquareText className="h-6 w-6 text-primary dark:text-primary-400" />
                                 <span className="text-xl font-bold bg-gradient-to-r from-primary to-violet-500 bg-clip-text text-transparent">
                                     AutoReply-Lite
                                 </span>
                             </div>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm text-muted-foreground dark:text-gray-400">
                                 Automatiza tus respuestas en Email y WhatsApp de forma sencilla. Ahorra tiempo y mejora la satisfacción
                                 de tus clientes.
                             </p>
                         </div>
+
                         <div className="space-y-4">
-                            <h4 className="text-sm font-medium text-foreground">Producto</h4>
-                            <ul className="space-y-2 text-sm text-muted-foreground">
-                                <li>
-                                    <a href="#caracteristicas" className="hover:text-primary transition-colors">
-                                        Características
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#planes" className="hover:text-primary transition-colors">
-                                        Planes
-                                    </a>
-                                </li>
+                            <h4 className="text-sm font-medium text-foreground dark:text-gray-200">Producto</h4>
+                            <ul className="space-y-2 text-sm text-muted-foreground dark:text-gray-400">
+                                <li><a href="#caracteristicas" className="hover:text-primary transition-colors">Características</a></li>
+                                <li><a href="#planes" className="hover:text-primary transition-colors">Planes</a></li>
                             </ul>
                         </div>
+
                         <div className="space-y-4">
-                            <h4 className="text-sm font-medium text-foreground">Legal</h4>
-                            <ul className="space-y-2 text-sm text-muted-foreground">
-                                <li>
-                                    <a href="#" className="hover:text-primary transition-colors">
-                                        Términos y condiciones
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="hover:text-primary transition-colors">
-                                        Política de privacidad
-                                    </a>
-                                </li>
+                            <h4 className="text-sm font-medium text-foreground dark:text-gray-200">Legal</h4>
+                            <ul className="space-y-2 text-sm text-muted-foreground dark:text-gray-400">
+                                <li><a href="#" className="hover:text-primary transition-colors">Términos y condiciones</a></li>
+                                <li><a href="#" className="hover:text-primary transition-colors">Política de privacidad</a></li>
                             </ul>
                         </div>
+
                         <div className="space-y-4">
-                            <h4 className="text-sm font-medium text-foreground">Contacto</h4>
-                            <ul className="space-y-2 text-sm text-muted-foreground">
+                            <h4 className="text-sm font-medium text-foreground dark:text-gray-200">Contacto</h4>
+                            <ul className="space-y-2 text-sm text-muted-foreground dark:text-gray-400">
                                 <li>
                                     <a href="mailto:info@autoreply-lite.com" className="hover:text-primary transition-colors">
                                         info@autoreply-lite.com
@@ -289,7 +269,8 @@ const HomePage = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
+
+                    <div className="mt-8 border-t dark:border-gray-800 pt-8 text-center text-sm text-muted-foreground dark:text-gray-400">
                         <p>© {new Date().getFullYear()} AutoReply-Lite. Todos los derechos reservados.</p>
                     </div>
                 </div>
