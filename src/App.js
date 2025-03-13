@@ -1,11 +1,17 @@
+/* eslint-disable no-unused-vars */
+// src/App.js
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/homePage/HomePage'
 
-export default function App () {
+function App () {
     return (
-        <div>
-            <h1>
-                <HomePage />
-            </h1>
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+            </Routes>
+        </Router>
     )
 }
+
+export default App
