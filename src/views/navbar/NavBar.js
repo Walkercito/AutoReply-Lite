@@ -7,112 +7,97 @@ import Button from '../../ui/Button'
 import { Menu, X, Moon, Sun, MessageSquare } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-function NavBar () {
+const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const [isDarkMode, setIsDarkMode] = useState(false)
 
     useEffect(() => {
-        // Verificar si el usuario prefiere el modo oscuro
-        if (typeof window !== 'undefined') {
-            const isDark =
-                localStorage.getItem('darkMode') === 'true' ||
-                (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-            setIsDarkMode(isDark)
-            if (isDark) {
-                document.documentElement.classList.add('dark')
-            }
-        }
+        // Mejor inicialización del modo oscuro
+        const savedMode = localStorage.getItem('darkMode')
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const initialMode = savedMode !== null ? savedMode === 'true' : systemDark
 
-        // Efecto de scroll
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setScrolled(true)
-            } else {
-                setScrolled(false)
-            }
-        }
+        setIsDarkMode(initialMode)
+        document.documentElement.classList.toggle('dark', initialMode)
 
+        const handleScroll = () => setScrolled(window.scrollY > 50)
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Cambiar entre modo oscuro y claro
+    // Toggle mejorado con actualización funcional
     const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode)
-        if (isDarkMode) {
-            document.documentElement.classList.remove('dark')
-            localStorage.setItem('darkMode', 'false')
-        } else {
-            document.documentElement.classList.add('dark')
-            localStorage.setItem('darkMode', 'true')
-        }
+        setIsDarkMode(prev => {
+            const newMode = !prev
+            document.documentElement.classList.toggle('dark', newMode)
+            localStorage.setItem('darkMode', newMode)
+            return newMode
+        })
     }
 
     return (
         <header
-            className={`sticky top-0 z-40 w-full backdrop-blur-lg transition-all duration-300 ${
-                scrolled ? 'bg-background/80 shadow-sm' : 'bg-transparent'
-            }`}
+            className={`sticky top-0 z-40 w-full backdrop-blur-lg transition-all duration-300 ${scrolled ? 'bg-background/80 shadow-sm' : 'bg-transparent'}`}
         >
-            <div className="w-full flex h-16 items-center justify-between bg-background text-foreground px-4">
-                {/* Logo y nombre */}
+            <div className="container mx-auto px-4 flex h-16 items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="relative">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-violet-500 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-200"></div>
-                        <div className="relative bg-background dark:bg-background/20 rounded-full p-1">
-                            <MessageSquare className="h-6 w-6 text-primary" /> {/* Ícono corregido */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-violet-500 rounded-full blur opacity-70 transition-opacity" />
+                        <div className="relative bg-background rounded-full p-1">
+                            <MessageSquare className="h-6 w-6 text-primary" />
                         </div>
                     </div>
-                    <span className="text-xl bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl font-bold text-transparent">
+                    <span className="text-lg font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl text-transparent">
                         AutoReply-Lite
                     </span>
                 </div>
 
-                {/* Navegación para desktop */}
-                <nav className="hidden md:flex items-center gap-6 ">
-                    <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+                <nav className="hidden md:flex items-center gap-6">
+                    <Link to="/" className="text-sm hover:text-primary transition-colors">
                         Inicio
                     </Link>
-                    <Link to="/features" className="text-sm font-medium hover:text-primary transition-colors">
+                    <Link to="/features" className="text-sm hover:text-primary transition-colors">
                         Características
                     </Link>
-                    <Link to="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+                    <Link to="/pricing" className="text-sm hover:text-primary transition-colors">
                         Planes
                     </Link>
-                    <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
+                    <Link to="/contact" className="text-sm hover:text-primary transition-colors">
                         Contacto
                     </Link>
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleDarkMode}
-                        className="ml-2"
-                        aria-label={isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+                        className="hover:bg-accent/20"
+                        aria-label={isDarkMode ? 'Modo claro' : 'Modo oscuro'}
                     >
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                     </Button>
                 </nav>
 
-                {/* Botones para móvil */}
                 <div className="flex items-center gap-2">
                     <Button
                         size="sm"
-                        className="hidden md:inline-flex bg-gradient-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity"
+                        className="hidden md:inline-flex bg-gradient-to-r from-primary to-violet-500 hover:opacity-90"
                     >
-                        Comenzar ahora
+                        <Link to="/login">Comenzar ahora</Link>
                     </Button>
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleDarkMode}
-                        className="md:hidden mr-2"
-                        aria-label={isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+                        className="md:hidden mr-2 hover:bg-accent/20"
                     >
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                     </Button>
-                    <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                        <span className="sr-only">Toggle menu</span>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="md:hidden hover:bg-accent/20"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
                         {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                     </Button>
                 </div>
@@ -126,24 +111,24 @@ function NavBar () {
                     exit={{ opacity: 0, height: 0 }}
                     className="md:hidden border-t"
                 >
-                    <div className="container py-4 flex flex-col gap-4">
-                        <Link to="/" className="text-sm font-medium hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                    <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+                        <Link to="/" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Inicio
                         </Link>
-                        <Link to="/features" className="text-sm font-medium hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/features" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Características
                         </Link>
-                        <Link to="/pricing" className="text-sm font-medium hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/pricing" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Planes
                         </Link>
-                        <Link to="/contact" className="text-sm font-medium hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/contact" className="text-sm hover:text-primary" onClick={() => setIsMenuOpen(false)}>
                             Contacto
                         </Link>
                         <Button
                             size="sm"
-                            className="w-full bg-gradient-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity"
+                            className="w-full bg-gradient-to-r from-primary to-violet-500 hover:opacity-90"
                         >
-                            Comenzar ahora
+                            <Link to="/login" className="w-full">Comenzar ahora</Link>
                         </Button>
                     </div>
                 </motion.div>

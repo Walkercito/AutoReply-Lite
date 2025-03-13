@@ -1,31 +1,41 @@
+/* eslint-disable no-unused-vars */
 // src/ui/Button.js
 
-const Button = ({ children, variant = 'primary', size = 'default', className = '', ...props }) => {
-    // Estilos base
-    const baseStyles = 'font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2'
+import React from 'react'
 
-    // Variantes
-    const variantStyles = {
-        primary: 'bg-gradient-to-r from-primary to-violet-500 text-white hover:opacity-90',
-        ghost: 'bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground',
-        outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground'
-    }
+const buttonVariants = {
+    default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+    destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+    outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+    ghost: 'hover:bg-accent hover:text-accent-foreground',
+    link: 'text-primary underline-offset-4 hover:underline'
+}
 
-    // Tamaños
-    const sizeStyles = {
-        default: 'px-4 py-2 text-sm',
-        sm: 'px-3 py-1.5 text-xs',
-        lg: 'px-6 py-3 text-base',
-        icon: 'p-2' // Para botones que solo contienen un ícono
-    }
+const buttonSizes = {
+    default: 'h-10 px-4 py-2',
+    sm: 'h-9 rounded-md px-3',
+    lg: 'h-11 rounded-md px-8',
+    icon: 'h-10 w-10'
+}
 
-    // Combina los estilos
-    const styles = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`
+const Button = ({
+    className = '',
+    variant = 'default',
+    size = 'default',
+    asChild = false,
+    children,
+    ...props
+}) => {
+    const Comp = asChild ? React.cloneElement(children, { ...props }) : 'button'
 
     return (
-        <button className={styles} {...props}>
-            {children}
-        </button>
+        <Comp
+            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${buttonVariants[variant]} ${buttonSizes[size]} ${className}`}
+            {...props}
+        >
+            {asChild ? null : children}
+        </Comp>
     )
 }
 
